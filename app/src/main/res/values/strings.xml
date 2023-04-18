@@ -1,0 +1,57 @@
+<resources>
+    <!-- Main Screen -->
+    <string name="app_name">ProjetoAulaUNC</string>
+    <string name="accessibility_logo">Logo da empresa</string>
+    <string name="accessibility_company">Ícone da empresa</string>
+    <string name="accessibility_client">Ícone do cliente</string>
+    <string name="accessibility_service">Ícone do serviço</string>
+    <string name="accessibility_contact">Ícone do contato</string>
+    <string name="accessibility_client_icon">Ícone do Cliente</string>
+
+
+    <!-- Clients -->
+    <string name="appbar_client">Clientes</string>
+    <string name="client_details">Nossos clientes</string>
+    <string name="client1">Sys é nosso primeiro grande cliente que iremos usar para essa aula de desenvolvimento para android</string>
+    <string name="client2">O texto do cliente RSM também é grande, então ele vai ocupar bastante espaço, assim como o primeiro</string>
+    <string name="accessibility_client_1">Cliente 1</string>
+    <string name="accessibility_client_2">Cliente 2</string>
+
+    <!-- Contacts -->
+    <string name="appbar_contact">Sobre nós</string>
+
+    <!-- Services -->
+    <string name="appbar_service">Serviços</string>
+    <string name="accessibility_services1">Serivço 1</string>
+    <string name="services_title">Nossos Serviços</string>
+    <string name="name_field">Nome</string>
+    <string name="hint_name">Insira seu nome</string>
+    <string name="email_field">E-mail</string>
+    <string name="hint_email">Insira seu e-mail</string>
+    <string name="hint_obs">Objetivo do contato</string>
+    <string name="accessibility_name">Campo de texto para informar seu nome para identificação</string>
+    <string name="accessibility_email">Campo de texto para informar seu e-mail para identificação</string>
+    <string name="accessibility_obs">Campo de texto para informar o objetivo do seu contato</string>
+    <string name="accessibility_spinner">Campo para selecionar o serviço</string>
+    <string-array name="spinner_options">
+        <item>Selecione um serviço</item>
+        <item>Orçamento</item>
+        <item>Parceria</item>
+        <item>Contato</item>
+        <item>Curiosidade</item>
+    </string-array>
+
+    <!-- Login -->
+    <string name="btn_service">Enviar</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_register">Registrar-se</string>
+    <string name="welcome">Bem-vindo </string>
+    <string name="invalid_username">Email inválido</string>
+    <string name="invalid_password">Senha deve ser maior que 1 caracter</string>
+    <string name="invalid_name">Nome inválido</string>
+    <string name="login_failed">Erro no login</string>
+
+</resources>
