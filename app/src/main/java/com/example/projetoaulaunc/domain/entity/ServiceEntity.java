@@ -7,19 +7,29 @@ import com.example.projetoaulaunc.app.pages.ServiceActivity;
 import com.example.projetoaulaunc.domain.source.Crash;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ServiceEntity {
-    private String name, email, service, observation;
+    private String userId, name, email, service, observation;
 
-    public ServiceEntity(String name, String email, String service, String observation) {
+    public ServiceEntity(String userId, String name, String email, String service, String observation) {
+        setUserId(userId);
         setEmail(email);
         setName(name);
         setService(service);
         setObservation(observation);
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -55,13 +65,14 @@ public class ServiceEntity {
     }
 
     public Map<String, Object> toJson() {
-        Date date = new Date();
+        Date date = Calendar.getInstance().getTime();
         Map<String, Object> map = new HashMap<>();
+        map.put("user_id", getUserId());
         map.put("name", getName());
         map.put("email", getEmail());
         map.put("service", getService());
         map.put("observation", getObservation());
-        map.put("created_at", date.getTime());
+        map.put("created_at", date.toString());
 
         return map;
     }

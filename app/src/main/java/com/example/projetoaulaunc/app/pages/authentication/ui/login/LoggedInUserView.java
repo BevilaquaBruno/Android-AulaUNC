@@ -2,6 +2,8 @@ package com.example.projetoaulaunc.app.pages.authentication.ui.login;
 
 import com.example.projetoaulaunc.data.model.UserModel;
 
+import java.util.Map;
+
 /**
  * Class exposing authenticated user details to the UI.
  */
@@ -22,5 +24,9 @@ class LoggedInUserView {
 
     String getUid() {
         return userModel.getId();
+    }
+
+    Map<String, Object> userToJson() {
+        return userModel.toJson();
     }
 }

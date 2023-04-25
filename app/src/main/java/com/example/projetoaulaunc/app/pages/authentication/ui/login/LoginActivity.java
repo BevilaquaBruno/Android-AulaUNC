@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -16,12 +17,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projetoaulaunc.R;
 import com.example.projetoaulaunc.databinding.ActivityLoginBinding;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        ActionBar appBar = Objects.requireNonNull(getSupportActionBar());
+        appBar.setDisplayHomeAsUpEnabled(true);
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -78,13 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                     Intent intent = new Intent();
-                    intent.putExtra("response", loginResult.getSuccess().toString());
+                    intent.putExtra("response", loginResult.getSuccess().userToJson().toString());
                     setResult(Activity.RESULT_OK, intent);
-                    onBackPressed();
+                    finish();
                 }
-
-                //Complete and destroy login activity once successful
-                //finish();
             }
         });
 
@@ -132,6 +135,15 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.register(emailEditText.getText().toString(),
                     passwordEditText.getText().toString(), nameEditText.getText().toString());
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == 16908332){
+            onBackPressed();
+            return (true);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

@@ -3,8 +3,10 @@ package com.example.projetoaulaunc.app.pages;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,13 +16,22 @@ import android.widget.Toast;
 
 import com.example.projetoaulaunc.R;
 import com.example.projetoaulaunc.app.pages.authentication.ui.login.LoginActivity;
+import com.example.projetoaulaunc.data.Result;
+import com.example.projetoaulaunc.data.datasource.ServiceDataSource;
+import com.example.projetoaulaunc.data.repository.ServiceRepository;
+import com.example.projetoaulaunc.data.sources.local.ConfigFirebase;
 import com.example.projetoaulaunc.domain.entity.ServiceEntity;
 import com.example.projetoaulaunc.domain.source.AppEvents;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
 public class ServiceActivity extends AppCompatActivity {
     AppEvents appEvents = new AppEvents();
+    private ServiceEntity serviceEntity;
+
+    private Boolean successSave = false;
 
     Spinner spinner;
     EditText name, email, obs;
@@ -103,32 +114,63 @@ public class ServiceActivity extends AppCompatActivity {
             return;
         }
 
-        startActivityForResult(
-                new Intent(this,
-                        LoginActivity.class
-                ),
-                200
-        );
-        /*
-        ServiceEntity serviceEntity = new ServiceEntity(fieldName, fieldEmail, fieldSpinner, fieldObs);
-        serviceEntity.sendtoDb(serviceEntity.toJson());
-         */
+        FirebaseAuth auth = ConfigFirebase.getAuth();
+        FirebaseUser user = auth.getCurrentUser();
+
+        if( user == null ) {
+            startActivityForResult(
+                    new Intent(this,
+                            LoginActivity.class
+                    ),
+                    200
+            );
+            return;
+        }
+
+        serviceEntity = new ServiceEntity(user.getUid(), fieldName, fieldEmail, fieldSpinner, fieldObs);
+        createService();
     }
+
+    private void createService() {
+        ServiceRepository repository = ServiceRepository.getInstance(new ServiceDataSource());
+
+        Log.i("service => ", serviceEntity.toJson().toString());
+        Result<Boolean> success = repository.setService(serviceEntity.toJson());
+
+        Log.i("success => ", success.toString());
+        if (success instanceof Result.Success){
+            setSuccess(((Result.Success<Boolean>) success).getData());
+        }
+
+        if (this.successSave){
+            Toast.makeText(this, "Sucesso ao cadastrar o serviço", Toast.LENGTH_LONG).show();
+            finish();
+        }else {
+            Toast.makeText(this, "Erro ao cadastrar o serviço", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void setSuccess(Boolean success) {
+        this.successSave = success;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            /*
+        if (requestCode == Activity.RESULT_OK) {
+
             String fieldName = name.getText().toString();
             String fieldEmail = email.getText().toString();
             String fieldObs = obs.getText().toString();
             String fieldSpinner = spinner.getSelectedItem().toString();
 
-            ServiceEntity serviceActivity = new ServiceEntity(
-                    fieldName, fieldEmail, fieldSpinner, fieldObs
-            );
-            */
             Object response = data.getExtras().get("response");
+            String[] values = response.toString().replace("{", "").replace("}", "").split(",");
+            String userId = values[2].split("=")[1];
+            ServiceEntity serviceEntity = new ServiceEntity(userId, fieldName, fieldEmail, fieldSpinner, fieldObs);
+            createService();
+
+
 
         }
     }
