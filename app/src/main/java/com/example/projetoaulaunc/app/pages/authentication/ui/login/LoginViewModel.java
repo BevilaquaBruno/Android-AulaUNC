@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Log;
 import android.util.Patterns;
 
 import com.example.projetoaulaunc.R;
-import com.example.projetoaulaunc.data.model.UserModel;
+import com.example.projetoaulaunc.data.datasource.model.UserModel;
 import com.example.projetoaulaunc.data.repository.LoginRepository;
 import com.example.projetoaulaunc.data.Result;
-import com.example.projetoaulaunc.data.model.LoggedInUser;
 
 import java.util.HashMap;
 import java.util.Map;

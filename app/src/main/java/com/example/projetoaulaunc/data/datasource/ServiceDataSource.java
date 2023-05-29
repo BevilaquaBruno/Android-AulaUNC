@@ -19,7 +19,7 @@ public class ServiceDataSource {
     public Result<Boolean> setService(Map<String, Object> json) {
         db = ConfigFirebase.getDb();
 
-        db.collection("Services").add(json)
+        db.collection("services").add(json)
                 .addOnSuccessListener(success -> this.successSave = true)
                 .addOnFailureListener(failure -> this.successSave = false);
 

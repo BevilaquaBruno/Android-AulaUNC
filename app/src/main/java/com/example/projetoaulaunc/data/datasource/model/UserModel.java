@@ -1,4 +1,4 @@
-package com.example.projetoaulaunc.data.model;
+package com.example.projetoaulaunc.data.datasource.model;
 
 import java.util.Calendar;
 import java.util.Date;

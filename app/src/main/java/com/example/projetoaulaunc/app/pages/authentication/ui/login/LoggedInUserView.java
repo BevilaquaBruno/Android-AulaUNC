@@ -1,6 +1,6 @@
 package com.example.projetoaulaunc.app.pages.authentication.ui.login;
 
-import com.example.projetoaulaunc.data.model.UserModel;
+import com.example.projetoaulaunc.data.datasource.model.UserModel;
 
 import java.util.Map;
 

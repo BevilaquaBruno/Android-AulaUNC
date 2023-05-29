@@ -2,7 +2,7 @@ package com.example.projetoaulaunc.data.repository;
 
 import com.example.projetoaulaunc.data.Result;
 import com.example.projetoaulaunc.data.datasource.LoginDataSource;
-import com.example.projetoaulaunc.data.model.UserModel;
+import com.example.projetoaulaunc.data.datasource.model.UserModel;
 
 import java.util.Map;
 

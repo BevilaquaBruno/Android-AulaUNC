@@ -16,6 +16,13 @@
         android:theme="@style/Theme.ProjetoAulaUNC"
         tools:targetApi="31">
         <activity
+            android:name=".app.pages.EmployeesActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".app.pages.authentication.ui.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.projetoaulaunc.app.pages.ClientActivity;
 import com.example.projetoaulaunc.app.pages.ContactActivity;
+import com.example.projetoaulaunc.app.pages.EmployeesActivity;
 import com.example.projetoaulaunc.app.pages.ServiceActivity;
 import com.example.projetoaulaunc.domain.source.AppEvents;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar appBar = Objects.requireNonNull(getSupportActionBar());
         appBar.hide();
 
+        openCompany();
         openClient();
         openContact();
         openService();
@@ -66,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 v-> startActivity(
                         new Intent(this,
                                 ServiceActivity.class
+                        )
+                )
+        );
+    }
+
+    void openCompany() {
+        Bundle bundle = new Bundle();
+        appEvents.globalEvent("main_open_company", bundle);
+        ImageView company = findViewById(R.id.btnCompany);
+        company.setOnClickListener(
+                v-> startActivity(
+                        new Intent(this,
+                                EmployeesActivity.class
                         )
                 )
         );

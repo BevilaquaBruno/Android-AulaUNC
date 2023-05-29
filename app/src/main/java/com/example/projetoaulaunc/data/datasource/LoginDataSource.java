@@ -5,7 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import com.example.projetoaulaunc.data.Result;
-import com.example.projetoaulaunc.data.model.UserModel;
+import com.example.projetoaulaunc.data.datasource.model.UserModel;
 import com.example.projetoaulaunc.data.sources.local.ConfigFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;

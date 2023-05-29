@@ -1,4 +1,4 @@
-package com.example.projetoaulaunc.data.model;
+package com.example.projetoaulaunc.data.datasource.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

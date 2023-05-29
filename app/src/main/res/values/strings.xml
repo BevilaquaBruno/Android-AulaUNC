@@ -54,4 +54,7 @@
     <string name="invalid_name">Nome inválido</string>
     <string name="login_failed">Erro no login</string>
 
+    <!-- company -->
+    <string name="appbar_company">Colaboradores: </string>
+
 </resources>
